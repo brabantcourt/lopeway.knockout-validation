@@ -12,4 +12,4 @@ The additional rules are:
 
 ###Examples
 
-A standalone example that uses both rules is at [index.html](./lopeway.knockout-validation/index.html)
+A standalone example that uses both rules is at [index.html](https://github.com/brabantcourt/lopeway.knockout-validation/blob/master/index.html)
