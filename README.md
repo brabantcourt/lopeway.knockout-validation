@@ -4,12 +4,12 @@ Additional rules for the [KnockoutJS Validation library](https://github.com/eric
 
 The additional rules are:
 
-*	**lopeway.knockout-validation.rules.validObject**
-*	**lopeway.knockout-validation.rules.validArray**
+*	**lopeway.validation.rules.validObject**
+*	**lopeway.validation.rules.validArray**
 
 ###How to use
 
-####Valid Object####
+####validObject####
 
 ```javascript
 ko.validation.rules.validObject = lopeway.validation.rules.validObject;
@@ -24,7 +24,7 @@ viewModel = {
 ko.applyBindings(viewModel);
 ```
 
-####Valid Array####
+####validArray####
 
 ```javascript
 ko.validation.rules.validArray = lopeway.validation.rules.validArray;
