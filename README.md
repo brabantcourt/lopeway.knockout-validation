@@ -12,4 +12,4 @@ The additional rules are:
 
 ###Examples
 
-A standalone example that uses both rules is at [/index.html](./index.html)
+A standalone example that uses both rules is at [index.html](index.html)
