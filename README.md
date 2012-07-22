@@ -9,6 +9,38 @@ The additional rules are:
 
 ###How to use
 
+####Valid Object####
+
+```javascript
+ko.validation.rules.validObject = lopeway.validation.rules.validObject;
+ko.validation.registerExtenders();
+
+viewModel = {
+	person: ko.observable({
+		name: ko.observable().extend({ required: true }),
+		age: ko.observable().extend({ min: 0, max: 120 })
+	}.extend({ validObject: true })
+};
+ko.applyBindings(viewModel);
+```
+
+####Valid Array####
+
+```javascript
+ko.validation.rules.validArray = lopeway.validation.rules.validArray;
+ko.validation.registerExtenders();
+
+viewModel = {
+	person: ko.observableArray([{
+		name: ko.observable().extend({ required: true }),
+		age: ko.observable().extend({ min: 0, max: 120 })
+	}, {
+		name: ko.observable().extend({ required: true }),
+		age: ko.observable().extend({ min:0, max:120 })
+	}].extend({ validArray: true })
+};
+ko.applyBindings(viewModel);
+```
 
 ###Examples
 
