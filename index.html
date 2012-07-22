@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Lopeway: Knockout-Validation</title>
+    <style>
+        body    { font-family: "Arial"; }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>First</th>
+                <th>Last</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:person">
+            <tr>
+                <!-- ko with:name --> 
+                <td><input type="text" data-bind="value:first" /></td>
+                <td><input type="text" data-bind="value:last" /></td>
+                <!-- /ko -->
+                <td><input type="text" data-bind="value:email" /></td>
+                <td><input type="text" data-bind="value:age" /></td>
+                <td><button data-bind="click:$root.add">Add</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <!-- ko if: errors().length>0 -->
+    <h1>Errors:</h1>
+    <table>
+        <tbody data-bind="foreach:errors">
+            <tr>
+                <td data-bind="text:$data"></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- /ko -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.1.0.js" type="text/javascript"></script>
+<script src="http://cloud.github.com/downloads/ericmbarnard/Knockout-Validation/knockout.validation.min.v0.9.js" type="text/javascript"></script>
+<script src="src/lopeway.knockout-validation.1.0.js" type="text/javascript"></script>
+<script type="text/ecmascript">
+/*globals $,jQuery,console,ko,lopeway,window*/
+$(function () {
+
+    "use strict";
+
+    var viewModel;
+
+    ko.validation.rules.validObject = lopeway.knockout-validation.rules.validObject;
+    ko.validation.rules.validArray = lopeway.knockout-validation.rules.validArray;
+    ko.validation.registerExtenders();
+
+    viewModel = {
+        person: ko.observableArray([
+            ko.observable(new lopeway.entities.Person()).extend({ validObject: true })
+        ]).extend({ validArray: true }),
+        add: function () {
+            if (viewModel.errors.length === 0) {
+                console.debug("[add] viewModel is-valid");
+                viewModel.person.push(ko.observable(new lopeway.entities.Person()).extend({ validObject: true }));
+            } else {
+                console.debug("[add] viewModel in-valid");
+            }
+        }
+    };
+    viewModel.errors = ko.validation.group(viewModel);
+    ko.applyBindings(viewModel);
+
+});
